@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fibonacci Sequence</title>
+  </head>
+  <body>
+    <h1>Fibonacci Sequence</h1>
+    <label for="number">Enter a number:</label>
+    <input type="text" id="number" name="number">
+    <button onclick="getFibonacciSequence()">Get Sequence</button>
+    <p id="sequence"></p>
+
+    <script>
+      async function getFibonacciSequence() {
+        const number = document.getElementById("number").value;
+        const response = await fetch(
+          "https://YOUR_LAMBDA_FUNCTION_API_GATEWAY_ENDPOINT/fibonacci?number=" +
+            number
+        );
+        const sequence = await response.json();
+        document.getElementById("sequence").innerHTML = sequence.join(", ");
+      }
+    </script>
+  </body>
+</html>
